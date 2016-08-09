@@ -1,2 +1,2 @@
 # Rambow-And-Skyline
-The core of a modularized game engine/framework.
+A modularized game engine/framework/develop tool.
