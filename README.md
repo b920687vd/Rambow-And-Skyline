@@ -4,6 +4,8 @@ A modularized game engine/framework/develop tool facing to indie developers.
 - Changeability：It means that you are supposed to change even rewrite modules that don't match your style. You can just override a function, add a new plugin, or develop a new module.Just change it for your project.
 - C++/JS: It will use the C++ to develop the core of engine and use the javascript for the script system.OpenGL and Google V8 engine may be the base of this system.
 
+***
+
 # 虹与天际
 一个面向个人开发者的模块化游戏引擎/框架/制作工具。
 - 模块化：意味着你可以拼接和选择适合的模块。它们使用"模块位"来标识各自模块的作用，并使用“接口”来表示可与之兼容的输入输出。
