@@ -1,6 +1,3 @@
-import { ModuleMgr } from "./ModuleMgr";
-import { ModPlugin } from "./ModPlugin";
-
 export module Module {
     export class Mod {
         //...
@@ -20,7 +17,7 @@ export module Module {
             //...
             let mod = this;
             return (x: number, y: number) => {
-                let args = mod.EnterHeadPlugin<[number, number]>("SetPos", x, y);
+                let args = mod.RunHeadPlugin<[number, number]>("SetPos", x, y);
                 mod.setPos.apply(mod, args as [number, number]);
             };
         }
@@ -29,7 +26,7 @@ export module Module {
             console.log("final", x, y);
         }
 
-        protected EnterHeadPlugin<T>(api: string, ...param: any[]): any[] {
+        protected RunHeadPlugin<T>(api: string, ...param: any[]): any[] {
             let args = param
             for (let i = 0; i < this.headPlugin[api].length; i++) {
                 let plugin = this.headPlugin[api][i];
@@ -38,9 +35,19 @@ export module Module {
             return args;
         }
     }
-    let Manager = new ModuleMgr();
-}
+    export class ModPlugin {
+        //...
+        public Run(...param: any[]): Array<any> {
+            //...
+            return new Array();
+        }
+    }
 
-export default Module;
-export * from "./ModuleMgr";
-export * from "./ModPlugin";
+    export class Signal {
+        //...
+    }
+
+    export class ModuleMgr {
+
+    }
+}
