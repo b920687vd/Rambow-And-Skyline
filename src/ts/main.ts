@@ -19,7 +19,5 @@ export module Game {
     var testPlg: PluginRandom.RandPoint = new PluginRandom.RandPoint();
 
     mod.RegPlugin("head", "SetPos", testPlg);
-    mod.Pid(2,2);
-    //mod.SetPos(2, 2);
     main.Init();
 }

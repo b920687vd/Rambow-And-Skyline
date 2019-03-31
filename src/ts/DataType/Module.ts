@@ -25,10 +25,6 @@ export module Module {
             }
         }
 
-        public Pid:(x:number,y:number)=>void  = this.RegAPI("SetPos",(x: number, y: number)=>{
-            console.log("final", x, y);
-        });
-
         protected RunHeadPlugin<T>(api: string, ...param: any[]): any[] {
             let args = param
             for (let i = 0; i < this.headPlugin[api].length; i++) {
