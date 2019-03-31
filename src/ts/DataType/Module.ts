@@ -50,7 +50,7 @@ export module Module {
         //...
     }
 
-    export class ModuleMgr {
+    export class ModMgr {
 
     }
 }

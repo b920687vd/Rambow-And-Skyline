@@ -14,7 +14,7 @@ export module Game {
     }
 
     var main = new Main();
-    var mgr: Module.ModuleMgr = new Module.ModuleMgr();
+    var mgr: Module.ModMgr = new Module.ModMgr();
     var mod: Module.Mod = new Module.Mod();
     var testPlg: PluginRandom.RandPoint = new PluginRandom.RandPoint();
 
