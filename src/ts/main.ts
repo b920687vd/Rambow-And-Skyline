@@ -16,8 +16,10 @@ export module Game {
     var main = new Main();
     var mgr: Module.ModuleMgr = new Module.ModuleMgr();
     var mod: Module.Mod = new Module.Mod();
-    var testPlg: PluginRandom = new PluginRandom();
+    var testPlg: PluginRandom.RandPoint = new PluginRandom.RandPoint();
+
     mod.RegPlugin("head", "SetPos", testPlg);
-    mod.SetPos(2, 2);
+    mod.Pid(2,2);
+    //mod.SetPos(2, 2);
     main.Init();
 }

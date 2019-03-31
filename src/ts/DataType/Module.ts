@@ -13,18 +13,21 @@ export module Module {
             curList[api].push(plugin);
         }
 
-        public get SetPos(): (x: number, y: number) => void {
+        public RegAPI<T extends Array<any>,P>(api:string,func:Function):(...arg:T)=>P{
             //...
             let mod = this;
-            return (x: number, y: number) => {
-                let args = mod.RunHeadPlugin<[number, number]>("SetPos", x, y);
-                mod.setPos.apply(mod, args as [number, number]);
-            };
+            let apiArgs = new Array<any>();
+            apiArgs.push(api);
+            return (...arg:T)=>{
+                apiArgs = apiArgs.concat(arg);
+                let param = mod.RunHeadPlugin.apply(mod,apiArgs as [string,...any[]]);
+                return func.apply(mod,param) as P;
+            }
         }
 
-        protected setPos(x: number, y: number) {
+        public Pid:(x:number,y:number)=>void  = this.RegAPI("SetPos",(x: number, y: number)=>{
             console.log("final", x, y);
-        }
+        });
 
         protected RunHeadPlugin<T>(api: string, ...param: any[]): any[] {
             let args = param
