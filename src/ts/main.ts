@@ -1,5 +1,7 @@
 import { Module } from "./DataType/Module";
 import { PluginRandom } from "./Plugin/PluginRandom";
+import { ModPackege } from "./Module/ModPackage";
+import { MainTest } from "./MainTest";
 
 export module Game {
     export class Main {
@@ -14,10 +16,6 @@ export module Game {
     }
 
     var main = new Main();
-    var mgr: Module.ModMgr = new Module.ModMgr();
-    var mod: Module.Mod = new Module.Mod();
-    var testPlg: PluginRandom.RandPoint = new PluginRandom.RandPoint();
-
-    mod.RegPlugin("head", "SetPos", testPlg);
     main.Init();
+    MainTest();
 }
