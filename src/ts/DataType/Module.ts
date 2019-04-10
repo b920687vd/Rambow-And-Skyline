@@ -27,6 +27,8 @@ export module Module {
 
         protected RunHeadPlugin<T>(api: string, ...param: any[]): any[] {
             let args = param
+            if (!this.headPlugin[api])
+                return args;
             for (let i = 0; i < this.headPlugin[api].length; i++) {
                 let plugin = this.headPlugin[api][i];
                 args = plugin.Run.apply(this, args);
