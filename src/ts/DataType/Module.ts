@@ -2,14 +2,14 @@ export module Module {
     export class Mod {
         //...
 
-        protected headPlugin: { [key: string]: Array<ModPlugin> } = {};
-        protected tailPlugin: { [key: string]: Array<ModPlugin> } = {};
+        protected headPlugin: { [key: string]: Array<Plugin> } = {};
+        protected tailPlugin: { [key: string]: Array<Plugin> } = {};
 
-        public RegPlugin(type: "head" | "tail", api: string, plugin: ModPlugin) {
-            let curList: { [key: string]: Array<ModPlugin> };
+        public RegPlugin(type: "head" | "tail", api: string, plugin: Plugin) {
+            let curList: { [key: string]: Array<Plugin> };
             curList = (type == "head") ? this.headPlugin : this.tailPlugin;
             if (!curList[api])
-                curList[api] = new Array<ModPlugin>();
+                curList[api] = new Array<Plugin>();
             curList[api].push(plugin);
         }
 
@@ -34,12 +34,9 @@ export module Module {
             return args;
         }
     }
-    export class ModPlugin {
+    export interface Plugin {
         //...
-        public Run(...param: any[]): Array<any> {
-            //...
-            return new Array();
-        }
+        Run(...param: any[]): Array<any>;
     }
 
     export class Signal {
