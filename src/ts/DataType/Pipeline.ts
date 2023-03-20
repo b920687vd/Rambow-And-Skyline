@@ -1,14 +1,22 @@
-export class Pipeline<T,R> {
-  private funcLinks: Array<(t: any) => any> = [];
+export type Plugin<T,R> = (p: T)=> R;
 
-  public static Create<T,R>(func: (k: T) => R): Pipeline<T,R> {
+export class Pipeline<T,R> {
+  private funcLinks: Array<Plugin<any,any>> = [];
+
+  public static Create<T,R>(func:Plugin<T,R>): Pipeline<T,R> {
     const pipeline = new Pipeline<T,R>();
     pipeline.funcLinks.push(func);
     return pipeline;
   }
 
-  public Link<U>(func: (k: R) => U): Pipeline<T, U> {
-    this.funcLinks.push(func as any);
+  public Link<U>(func: Plugin<R, U>): Pipeline<T, U>
+  public Link<U>(func: Pipeline<R, U>): Pipeline<T, U>
+  public Link<U>(func: Plugin<R, U> | Pipeline<R, U>): Pipeline<T, U> {
+    if (func instanceof Pipeline) {
+      this.funcLinks = this.funcLinks.concat(func.funcLinks);
+    } else {
+      this.funcLinks.push(func as any);
+    }
     return this as any;
   }
 
