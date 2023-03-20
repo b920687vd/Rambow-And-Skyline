@@ -7,10 +7,9 @@ export class Pipeline<T,R> {
     return pipeline;
   }
 
-  public Link<U>(func: (k: R) => U): Pipeline<T,U> {
-    const pipeline = new Pipeline<T,U>();
-    pipeline.funcLinks = [...this.funcLinks, func];
-    return pipeline;
+  public Link<U>(func: (k: R) => U): Pipeline<T, U> {
+    this.funcLinks.push(func as any);
+    return this as any;
   }
 
   public Execute(params: T): R {
